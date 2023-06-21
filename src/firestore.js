@@ -1,7 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { doc, getDoc, getDocs, getFirestore } from 'firebase/firestore'
-import { collection, addDoc } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  setDoc,
+} from 'firebase/firestore'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDmHAdg15lQ4Ltf6GO6UobEuENM4CKSnVE',
@@ -16,29 +22,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
-const addTest = async () => {
-  // console.log(db.collection('test_exams').document('laptrinhweb'))
-
-  console.log(
-    collection(db, 'test_exams', ['laptrinhweb', 'week1', 'attempt_0'])
-  )
-  try {
-    const docRef = await addDoc(
-      //collection(db,  'test_exams/laptrinhweb/week1/attempt_0'),
-      collection(db, 'test_exams', ['laptrinhweb', 'week1', 'attempt_0']),
-      {
-        ques: ['hello'],
-        ans: ['world'],
-      }
-    )
-    console.log('Document written with ID: ', docRef.id)
-  } catch (e) {
-    console.error('Error adding document: ', e)
-  }
+const addTest = async (path, data) => {
+  await setDoc(doc(db, 'test_exams', path), data)
 }
 
-const getTest = async () => {
-  const docRef = doc(db, 'test_exams', 'laptrinhweb/week1/attempt_0')
+const getTest = async path => {
+  const docRef = doc(db, 'test_exams', path)
   const docSnap = await getDoc(docRef)
 
   if (docSnap.exists()) {
@@ -48,4 +37,14 @@ const getTest = async () => {
   }
 }
 
-export { getTest, addTest }
+const getSubjectNameArr = async () => {
+  const querySnapshot = await getDocs(collection(db, 'test_exams'))
+  let subjects = []
+  querySnapshot.forEach(doc => {
+    subjects.push(doc.id)
+  })
+  //  console.log(subjects)
+  return subjects
+}
+
+export { getTest, addTest, getSubjectNameArr }
