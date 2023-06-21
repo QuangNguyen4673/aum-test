@@ -43,7 +43,6 @@ const getSubjectNameArr = async () => {
   querySnapshot.forEach(doc => {
     subjects.push(doc.id)
   })
-  //  console.log(subjects)
   return subjects
 }
 

@@ -1,8 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { BAI1 } from './data/ltwData'
 import { addTest, getSubjectNameArr, getTest } from './firestore'
 import AumTestPage from './pages/AumTestPage'
+import { SUBJECTS } from './constant'
 /* 
 TODO
 -Input 2 array question and answer each test -> Display list of Q&A
@@ -15,10 +16,15 @@ TODO
 */
 
 function App() {
-  useEffect(() => {
-    console.log(getSubjectNameArr())
+  const [subjects, setSubjects] = useState([])
 
-    // getTest('laptrinhweb')
+  const fetchSubjectNames = async () => {
+    const res = await getSubjectNameArr()
+    setSubjects(res)
+  }
+  useEffect(() => {
+    fetchSubjectNames()
+    getTest('ltw')
     // addTest('laptrinhweb/week1/attempt_0', {
     //   ques: ['hello'],
     //   ans: ['world'],
@@ -26,7 +32,16 @@ function App() {
   }, [])
   return (
     <div className="App">
-      <AumTestPage data={BAI1} />
+      <div className="subjects">
+        {subjects.length > 0 && (
+          <ul>
+            {subjects.map((subject, index) => {
+              return <li key={index}>{SUBJECTS[subject]}</li>
+            })}
+          </ul>
+        )}
+      </div>
+      {/* <AumTestPage data={BAI1} /> */}
     </div>
   )
 }
