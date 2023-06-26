@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { BAI1 } from './data/ltwData'
+import { BAI1 } from './data/ltw'
 import { addTest, getSubjectNameArr, getTest } from './firestore'
 import AumTestPage from './pages/AumTestPage'
 import { SUBJECTS } from './constant'
