@@ -32,7 +32,7 @@ function App() {
   }, [])
   return (
     <div className="App">
-      <div className="subjects">
+      {/* <div className="subjects">
         {subjects.length > 0 && (
           <ul>
             {subjects.map((subject, index) => {
@@ -40,8 +40,8 @@ function App() {
             })}
           </ul>
         )}
-      </div>
-      {/* <AumTestPage data={BAI1} /> */}
+      </div> */}
+      <AumTestPage data={[]} />
     </div>
   )
 }

@@ -11,36 +11,24 @@ const set2 = [
 ]
 
 const uniqueSet = (...sets) => {
-  let res = []
-  let duplicateQues = []
-  console.log(sets)
-  const questions = sets.flatMap(set => {
+  const questions = sets.flat().map(set => {
     return set.ques
   })
-  return questions
+  const uniqQuestions = [...new Set(questions)]
+  const resultSet = uniqQuestions.reduce((acc, ques) => {
+    let found
+    sets.forEach(set => {
+      set.forEach(qa => {
+        if (qa.ques === ques) {
+          found = qa.ans
+        }
+      })
+    })
+    if (!found) {
+      return acc
+    }
+    return [...acc, { ques, ans: found }]
+  }, [])
+  return resultSet
 }
 console.log(uniqueSet(set1, set2))
-
-let res = []
-let duplicateQues = []
-const set2ques = set2.map(item => item.ques)
-set1.forEach(item => {
-  if (set2ques.includes(item.ques)) {
-    duplicateQues.push(item.ques)
-  } else {
-    res.push(item)
-  }
-})
-set2.forEach(item => {
-  if (!duplicateQues.includes(item.ques)) {
-    res.push(item)
-  }
-})
-duplicateQues.forEach(ques => {
-  const found = set1.find(item => item.ques === ques)
-  if (found) {
-    res.push(found)
-  }
-})
-// console.log(res)
-// console.log(duplicateQues)
