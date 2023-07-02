@@ -1,0 +1,57 @@
+li {
+  list-style-type: none;
+}
+
+.subjects {
+  padding: 30px 50px;
+  > * {
+    margin-bottom: 30px;
+  }
+
+  .subject-list {
+    display: flex;
+    justify-content: space-between;
+
+    .subject-item {
+      border: 1px solid gray;
+      cursor: pointer;
+      padding: 6px 10px;
+      flex-basis: 33, 333%;
+      /* TODO: set 4 columns of subject item, set
+              Make hover effect
+              Investigate why border stretching when changing to 25% 
+       */
+
+      &.active {
+        background-color: #dee2e6;
+      }
+    }
+  }
+
+  .actions {
+    .firebase-path {
+      margin-bottom: 5px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  .sets-showcase {
+    display: flex;
+    gap: 10px;
+    > * {
+      flex: 1;
+    }
+    .aum-test {
+      .question {
+        font-weight: bold;
+      }
+      .answer {
+        /*  background-color: #fcf8e3; */
+      }
+    }
+  }
+}
