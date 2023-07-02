@@ -1,6 +1,6 @@
 const BAI1 = [
   {
-    ques: [
+    questions: [
       'Đối tượng nào được server trả về khi có yêu cầu một trang .aspx?',
       'Thuộc tính nào quyết định một thành phần được xử lý phía Server?',
       'Để sử dụng các đối tượng IDbCommand, IDbConnection cần sử dụng namespace nào?',
@@ -17,7 +17,7 @@ const BAI1 = [
       'Bổ sung các thuộc tính phù hợp vào dấu 3 chấm cho tag <asp:Button … />',
       'Đối tượng nào được server trả về khi có yêu cầu một trang .aspx?',
     ],
-    ans: [
+    answers: [
       'Responce',
       'runat =  “server”',
       'System.Data',
@@ -39,7 +39,7 @@ const BAI1 = [
 
 const BAI2 = [
   {
-    ques: [
+    questions: [
       'Web User Control có control  <asp:label ID=”Label1”>. Biểu thức trong thuộc tính đặt dòng chữ hiện trên control sẽ được viết thế nào?',
       'Tag <a> tạo ra control nào?',
       'Tag <textarea> tạo ra control nào?',
@@ -56,7 +56,7 @@ const BAI2 = [
       'Cho đoạn tag sau:<asp:RadioButton ID= “Radio1”  GroupName= “Group1” runat= “server” Checked= “true” /><asp:RadioButton ID= “Radio2”  GroupName=“Group1” runat= “server” />Vì sao hai RadioButton này không thể cùng có thuộc tính Checked bằng “true”?',
       'Tag <a> tạo ra control nào?',
     ],
-    ans: [
+    answers: [
       'set { Lable1.Text = value; }',
       'dòng link đến một web page',
       'ô nhập nhiều dòng ký tự',
@@ -78,7 +78,7 @@ const BAI2 = [
 
 const BAI3 = [
   {
-    ques: [
+    questions: [
       'Thuộc tính nào của Parameter quyết định nó là tham số đầu vào hoặc ra?',
       'Thuộc tính nào của DataAdapter chứa câu SQL xóa dữ liệu trong cơ sở dữ liệu?',
       'Thuộc tính nào của DataAdapter chứa câu SQL đọc dữ liệu vào DataSet?',
@@ -95,7 +95,7 @@ const BAI3 = [
       'Phương thức nào của DataAdapter dùng để cập nhật sự thay đổi của dữ liệu từ DataTable vào cơ sở dữ liệu?',
       'Thành phần nào của Provider dùng để chạy một câu SQL?',
     ],
-    ans: [
+    answers: [
       'Direction',
       'DeleteCommand',
       'SelectCommand',

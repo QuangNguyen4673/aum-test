@@ -3,7 +3,8 @@
   width: 50vw;
 }
 .question {
+  font-weight: bold;
 }
 .answer {
-  background-color: #fcf8e3;
+  /*  background-color: #fcf8e3; */
 }

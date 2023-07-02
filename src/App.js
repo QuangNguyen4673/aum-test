@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { BAI1 } from './data/ltw'
 import { addTest, getSubjectNameArr, getTest } from './firestore'
 import AumTestPage from './pages/AumTestPage'
-import { SUBJECTS } from './constant'
+import { set1 } from './data/ktdh'
+import { uniqueSet } from './ultils'
 /* 
 TODO
 -Input 2 array question and answer each test -> Display list of Q&A
@@ -24,14 +24,20 @@ function App() {
   }
   useEffect(() => {
     fetchSubjectNames()
-    getTest('ltw')
+    getTest('ktdh/set1/eh6hM6NuPBrZepW9LYK0')
     // addTest('laptrinhweb/week1/attempt_0', {
-    //   ques: ['hello'],
-    //   ans: ['world'],
+    //   questions: ['hello'],
+    //   answers: ['world'],
     // })
   }, [])
+  const addTestSet = () => {
+    addTest('ktdh', set1)
+  }
   return (
     <div className="App">
+      <button type="button" onClick={addTestSet}>
+        Add test set
+      </button>
       {/* <div className="subjects">
         {subjects.length > 0 && (
           <ul>
@@ -41,7 +47,7 @@ function App() {
           </ul>
         )}
       </div> */}
-      <AumTestPage data={[]} />
+      <AumTestPage data={uniqueSet(set1)} />
     </div>
   )
 }

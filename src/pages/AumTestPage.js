@@ -10,8 +10,8 @@ export default function AumTestPage({ data }) {
         return (
           <div key={index}>
             <div className="q-a-set">
-              <div className="question">{item.ques}</div>
-              <div className="answer">{item.ans}</div>
+              <div className="question">{item.question}</div>
+              <div className="answer">- {item.answer}</div>
             </div>
           </div>
         )

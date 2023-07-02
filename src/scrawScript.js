@@ -11,35 +11,35 @@ console.log(quesArr)
 // Answers
 const answerArr = []
 const rightanswers = document.querySelectorAll('.rightanswer')
-rightanswers.forEach(ans => {
-  answerArr.push(ans.textContent.trim().replace('Câu trả lời đúng là: ', ''))
+rightanswers.forEach(answer => {
+  answerArr.push(answer.textContent.trim().replace('Câu trả lời đúng là: ', ''))
 })
 console.log(answerArr)
 // Set
-let set = quesArr.map((ques, index) => {
-  return { ques, ans: answerArr[index] }
+let set = quesArr.map((question, index) => {
+  return { question, answer: answerArr[index] }
 })
 console.log(set)
 
 // 2 or more sets --> 1 unique QA set
 const uniqueSet = (...sets) => {
   const questions = sets.flat().map(set => {
-    return set.ques
+    return set.question
   })
   const uniqQuestions = [...new Set(questions)]
-  const resultSet = uniqQuestions.reduce((acc, ques) => {
+  const resultSet = uniqQuestions.reduce((acc, question) => {
     let found
     sets.forEach(set => {
       set.forEach(qa => {
-        if (qa.ques === ques) {
-          found = qa.ans
+        if (qa.question === question) {
+          found = qa.answer
         }
       })
     })
     if (!found) {
       return acc
     }
-    return [...acc, { ques, ans: found }]
+    return [...acc, { question, answer: found }]
   }, [])
 
   return resultSet

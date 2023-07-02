@@ -1,15 +1,4 @@
-const set1 = [
-  { question: 'hello', answer: 'world' },
-  { question: 'hello1', answer: 'world1' },
-  { question: 'hello2', answer: 'world2' },
-]
-
-const set2 = [
-  { question: 'hello3', answer: 'world3' },
-  { question: 'hello4', answer: 'world4' },
-  { question: 'hello', answer: 'world' },
-]
-
+import sortBy from 'lodash/sortBy'
 const uniqueSet = (...sets) => {
   const questions = sets.flat().map(set => {
     return set.question
@@ -29,6 +18,8 @@ const uniqueSet = (...sets) => {
     }
     return [...acc, { question, answer: found }]
   }, [])
-  return resultSet
+
+  return sortBy(resultSet, ['question', 'answer'])
 }
-console.log(uniqueSet(set1, set2))
+
+export { uniqueSet }
