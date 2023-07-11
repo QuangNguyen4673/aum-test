@@ -5,6 +5,7 @@ import AumTestPage from './pages/AumTestPage'
 import LOCAL_DATA from './data'
 import { SUBJECTS } from './constant'
 import classnames from 'classnames'
+import { uniqueSet } from './ultils'
 
 /* 
 TODO
@@ -55,7 +56,7 @@ function App() {
 
   const addTestSet = () => {
     addTest(activeSubject, {
-      set: LOCAL_DATA[activeSubject],
+      set: uniqueSet(LOCAL_DATA[activeSubject], data),
     })
   }
 

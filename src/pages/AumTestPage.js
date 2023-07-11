@@ -9,6 +9,7 @@ export default function AumTestPage({ data }) {
 
   return (
     <div className="aum-test">
+      {`${sortedData.length} questions`}
       {sortedData.map((item, index) => {
         return (
           <div className="q-a-set" key={index}>
