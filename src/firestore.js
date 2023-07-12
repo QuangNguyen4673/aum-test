@@ -23,7 +23,12 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app)
 
 const addTest = async (path, data) => {
-  await setDoc(doc(db, 'test_exams', path), data)
+  try {
+    await setDoc(doc(db, 'test_exams', path), data)
+    alert('Successfully feeded to db')
+  } catch (error) {
+    alert('There are some errors occur')
+  }
 }
 
 const getTest = async path => {

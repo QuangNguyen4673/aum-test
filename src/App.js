@@ -58,6 +58,7 @@ function App() {
     addTest(activeSubject, {
       set: uniqueSet(LOCAL_DATA[activeSubject], data),
     })
+    fetchTestSet(activeSubject)
   }
 
   const onSelectSubject = subject => {
