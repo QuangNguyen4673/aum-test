@@ -39,6 +39,7 @@ function App() {
   const [subjects, setSubjects] = useState([])
   const [data, setData] = useState([])
   const [activeSubject, setActiveSubject] = useState()
+  const [showLocalQuestions, setShowLocalQuestions] = useState(false)
 
   const fetchSubjectNames = async () => {
     const res = await getSubjectNameArr()
@@ -69,6 +70,18 @@ function App() {
   const firebasePath = activeSubject
     ? `Path: /${activeSubject}`
     : 'Please select a subject'
+
+  const handleToggleLocalQuestions = () => {
+    setShowLocalQuestions(!showLocalQuestions)
+  }
+
+  const localQuestionCount = LOCAL_DATA[activeSubject]?.length
+    ? `(${LOCAL_DATA[activeSubject]?.length})`
+    : ''
+
+  const toggleButtonLabel = `${
+    showLocalQuestions ? 'Hide' : 'Show'
+  } local questions ${localQuestionCount}`
 
   return (
     <div className="App">
@@ -112,14 +125,24 @@ function App() {
             >
               Merge
             </button>
+            <button
+              type="button"
+              className="toggle-local-set-btn"
+              onClick={handleToggleLocalQuestions}
+              disabled={!activeSubject}
+            >
+              {toggleButtonLabel}
+            </button>
           </div>
         </div>
 
         {activeSubject && (
           <div className="sets-showcase">
-            <div className="sets-showcase__local">
-              <AumTestPage data={LOCAL_DATA[activeSubject]} />
-            </div>
+            {showLocalQuestions && (
+              <div className="sets-showcase__local">
+                <AumTestPage data={LOCAL_DATA[activeSubject]} />
+              </div>
+            )}
             <div className="sets-showcase__cloud">
               <AumTestPage data={data} />
             </div>
