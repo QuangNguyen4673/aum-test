@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import sortBy from 'lodash/sortBy'
-import clipboard from '../images/clipboard-regular.svg'
-import check from '../images/check-solid.svg'
+import CopyButton from '../components/CopyButton'
 
 export default function AumTestPage({ data }) {
   if (!data || data.length === 0) {
     return 'No test data'
   }
+
   const sortedData = sortBy(data, ['question', 'answer'])
 
   return (
@@ -23,25 +23,5 @@ export default function AumTestPage({ data }) {
         )
       })}
     </div>
-  )
-}
-
-const CopyButton = ({ copyContent }) => {
-  const [clicked, setClicked] = useState(false)
-  const handleClick = () => {
-    navigator.clipboard.writeText(copyContent)
-    setClicked(true)
-    setTimeout(() => {
-      setClicked(false)
-    }, 1000)
-  }
-  return (
-    <button type="button" style={{ cursor: 'pointer' }} onClick={handleClick}>
-      {clicked ? (
-        <img src={check} alt="clipboard" width={12} height={12} />
-      ) : (
-        <img src={clipboard} alt="clipboard" width={12} height={12} />
-      )}
-    </button>
   )
 }

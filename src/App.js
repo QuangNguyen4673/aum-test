@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
-import './App.scss'
 import { addTest, getSubjectNameArr, getTest } from './firestore'
 import AumTestPage from './pages/AumTestPage'
-import LOCAL_DATA from './data'
 import { SUBJECTS } from './constant'
 import classnames from 'classnames'
 import { uniqueSet } from './ultils'
+import { isEmpty } from 'lodash'
+import QuestionArraySearch from './components/QuestionArraySearch'
+import './App.scss'
+import AddQAPairs from './components/AddQAPairs'
 
 /* 
 TODO
@@ -39,6 +41,7 @@ function App() {
   const [subjects, setSubjects] = useState([])
   const [data, setData] = useState([])
   const [activeSubject, setActiveSubject] = useState()
+  const [localQAPairs, setLocalQAPairs] = useState([])
   const [showLocalQuestions, setShowLocalQuestions] = useState(false)
 
   const fetchSubjectNames = async () => {
@@ -57,7 +60,7 @@ function App() {
 
   const addTestSet = () => {
     addTest(activeSubject, {
-      set: uniqueSet(LOCAL_DATA[activeSubject], data),
+      set: uniqueSet(localQAPairs, data),
     })
     fetchTestSet(activeSubject)
   }
@@ -75,13 +78,20 @@ function App() {
     setShowLocalQuestions(!showLocalQuestions)
   }
 
-  const localQuestionCount = LOCAL_DATA[activeSubject]?.length
-    ? `(${LOCAL_DATA[activeSubject]?.length})`
+  const localQuestionCount = localQAPairs?.length
+    ? `(${localQAPairs?.length})`
     : ''
 
   const toggleButtonLabel = `${
     showLocalQuestions ? 'Hide' : 'Show'
   } local questions ${localQuestionCount}`
+
+  const handleLocalQAPairs = value => {
+    if (Array.isArray(value)) {
+      setLocalQAPairs(value)
+      setShowLocalQuestions(true)
+    }
+  }
 
   return (
     <div className="App">
@@ -107,6 +117,7 @@ function App() {
 
         <div className="actions">
           <div className="firebase-path">{firebasePath}</div>
+
           <div className="btn-group">
             <button
               type="button"
@@ -134,13 +145,18 @@ function App() {
               {toggleButtonLabel}
             </button>
           </div>
+
+          <div className="input-actions">
+            <AddQAPairs handleLocalQAPairs={handleLocalQAPairs} />
+            {!isEmpty(data) && <QuestionArraySearch data={data} />}
+          </div>
         </div>
 
         {activeSubject && (
           <div className="sets-showcase">
             {showLocalQuestions && (
               <div className="sets-showcase__local">
-                <AumTestPage data={LOCAL_DATA[activeSubject]} />
+                <AumTestPage data={localQAPairs} />
               </div>
             )}
             <div className="sets-showcase__cloud">

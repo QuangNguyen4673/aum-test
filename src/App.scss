@@ -36,6 +36,31 @@ li {
     .btn-group {
       display: flex;
       gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .input-actions {
+      display: flex;
+    }
+
+    .question-array-search {
+      textarea {
+        display: block;
+        margin-bottom: 10px;
+      }
+      form {
+        margin-bottom: 15px;
+      }
+    }
+
+    .qa-apply-to-local {
+      textarea {
+        display: block;
+        margin-bottom: 10px;
+      }
+      form {
+        margin-bottom: 15px;
+      }
     }
   }
 
