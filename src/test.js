@@ -1,4 +1,48 @@
-import sortBy from 'lodash/sortBy'
+const remoteQaPair = [
+  {
+    question: 'abc',
+    answer: '123',
+  },
+  {
+    question: 'def',
+    answer: '456',
+  },
+]
+
+const localQaPair = [
+  {
+    question: 'abc',
+    answer: 'quang',
+  },
+  {
+    question: 'def',
+    answer: '456',
+  },
+  {
+    question: 'ght',
+    answer: '789',
+  },
+]
+
+const expectedQaPair = [
+  {
+    question: 'abc',
+    answer: '123',
+  },
+  {
+    question: 'abc',
+    answer: 'quang',
+  },
+  {
+    question: 'ght',
+    answer: '789',
+  },
+  {
+    question: 'def',
+    answer: '456',
+  },
+]
+
 const uniqueSet = (...sets) => {
   const newSets = sets.filter(set => set)
   const questions = newSets.flat().map(set => {
@@ -20,7 +64,7 @@ const uniqueSet = (...sets) => {
     return [...acc, { question, answer: found }]
   }, [])
 
-  return sortBy(resultSet, ['question', 'answer'])
+  return resultSet
 }
 
 const uniqueSet1 = (...sets) => {
@@ -45,7 +89,7 @@ const uniqueSet1 = (...sets) => {
     }
   })
 
-  return sortBy(resultSet, ['question', 'answer'])
+  return resultSet
 }
 
-export { uniqueSet, uniqueSet1 }
+console.log(uniqueSet1(localQaPair, remoteQaPair))

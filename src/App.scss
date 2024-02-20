@@ -9,19 +9,14 @@ li {
   }
 
   .subject-list {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
 
     .subject-item {
       border: 1px solid gray;
       cursor: pointer;
       padding: 6px 10px;
-      flex-basis: 33, 333%;
-      /* TODO: set 4 columns of subject item, set
-              Make hover effect
-              Investigate why border stretching when changing to 25% 
-       */
-
       &.active {
         background-color: #dee2e6;
       }

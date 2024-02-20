@@ -16,9 +16,7 @@ export default function AumTestPage({ data }) {
         return (
           <div className="q-a-set" key={index}>
             <div className="question">{item.question}</div>
-            <div className="answer">
-              - {item.answer} &nbsp; <CopyButton copyContent={item.answer} />
-            </div>
+            <div className="answer">- {item.answer}</div>
           </div>
         )
       })}

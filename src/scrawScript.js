@@ -20,27 +20,3 @@ let set = quesArr.map((question, index) => {
   return { question, answer: answerArr[index] }
 })
 console.log(set)
-
-// 2 or more sets --> 1 unique QA set
-const uniqueSet = (...sets) => {
-  const questions = sets.flat().map(set => {
-    return set.question
-  })
-  const uniqQuestions = [...new Set(questions)]
-  const resultSet = uniqQuestions.reduce((acc, question) => {
-    let found
-    sets.forEach(set => {
-      set.forEach(qa => {
-        if (qa.question === question) {
-          found = qa.answer
-        }
-      })
-    })
-    if (!found) {
-      return acc
-    }
-    return [...acc, { question, answer: found }]
-  }, [])
-
-  return resultSet
-}

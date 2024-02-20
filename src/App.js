@@ -3,7 +3,7 @@ import { addTest, getSubjectNameArr, getTest } from './firestore'
 import AumTestPage from './pages/AumTestPage'
 import { SUBJECTS } from './constant'
 import classnames from 'classnames'
-import { uniqueSet } from './ultils'
+import { uniqueSet1 } from './ultils'
 import { isEmpty } from 'lodash'
 import QuestionArraySearch from './components/QuestionArraySearch'
 import './App.scss'
@@ -60,7 +60,7 @@ function App() {
 
   const addTestSet = () => {
     addTest(activeSubject, {
-      set: uniqueSet(localQAPairs, data),
+      set: uniqueSet1(localQAPairs, data),
     })
     fetchTestSet(activeSubject)
   }
